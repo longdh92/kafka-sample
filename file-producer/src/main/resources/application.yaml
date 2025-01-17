@@ -1,0 +1,20 @@
+spring:
+    application:
+        name: 'file-producer'
+    profiles:
+        active: dev
+    kafka:
+        bootstrap-servers:
+            - localhost:29092 # Broker 1
+            - localhost:39092 # Broker 2
+            - localhost:49092 # Broker 3
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+            retries: 3
+            acks: all
+            batch-size: 16384
+            linger-ms: 1
+            buffer-memory: 33554432
+        topic:
+            file-paths: 'web-team-bu-3'

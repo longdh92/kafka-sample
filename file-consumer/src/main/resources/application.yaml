@@ -1,0 +1,20 @@
+spring:
+    application:
+        name: 'file-consumer'
+    profiles:
+        active: dev
+    kafka:
+        bootstrap-servers:
+            - localhost:29092 # Broker 1
+            - localhost:39092 # Broker 2
+            - localhost:49092 # Broker 3
+        consumer:
+            group-id: file-consumer-group
+            auto-offset-reset: earliest
+            enable-auto-commit: true
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        listener:
+            concurrency: 5
+        topic:
+            file-paths: 'web-team-bu-3'
